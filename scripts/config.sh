@@ -10,9 +10,9 @@ REPO_NAME="you_in_the_loop"
 BASE="$HOME/$REPO_NAME"
 
 # TODO: tmux 세션 이름. 'tmux new-session -s {이름}' 으로 생성한 세션 이름.
-TMUX_SESSION="tso"
+TMUX_SESSION="myteam"
 
-# TODO: AR Manager tmux 창 이름 또는 인덱스. 예: "tso:ar-manager" 또는 "tso:3"
+# TODO: AR Manager tmux 창 이름 또는 인덱스. 예: "myteam:ar-manager" 또는 "myteam:3"
 AR_WINDOW="${TMUX_SESSION}:ar-manager"
 AR_FALLBACK="${TMUX_SESSION}:3"
 

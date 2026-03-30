@@ -38,14 +38,14 @@ tmux 세션 "myteam"
 ## 3계층 구조
 
 ```
-당신 (TSO — The System Owner)
+당신 (YOU — The System Owner)
 │
 │   ← 여기서만 대화
 │
 ▼
 ┌─────────────────────────────────┐
 │          Secretary              │
-│  전략 보좌. TSO 접점.           │
+│  전략 보좌. YOU 접점.           │
 │  dispatch_inbox/ → AR Manager  │
 └────────────┬────────────────────┘
              │ 파일 기반 신호 전달
@@ -65,16 +65,16 @@ tmux 세션 "myteam"
 ```
 
 ### Secretary (비서)
-- **TSO와의 유일한 대화 창구**
-- TSO의 지시를 dispatch 패킷으로 변환하여 Worker에게 전달
-- AR Manager의 신호를 받아 TSO에게 필요한 것만 보고
+- **YOU와의 유일한 대화 창구**
+- YOU의 지시를 dispatch 패킷으로 변환하여 Worker에게 전달
+- AR Manager의 신호를 받아 YOU에게 필요한 것만 보고
 - 구현 작업 직접 수행 금지 — 반드시 Worker에 위임
 
 ### AR Manager (자율 자원 관리자)
 - **운영 레이어 소유자**
 - Worker 상태 모니터링, dispatch 전달, 권한 처리, 재부팅
 - Secretary에게는 요약된 신호만 파일로 전달
-- TSO와 직접 대화 없음 (Secretary 경유)
+- YOU와 직접 대화 없음 (Secretary 경유)
 
 ### Worker
 - **실행 전담**

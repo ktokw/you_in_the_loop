@@ -10,7 +10,7 @@ install.sh 실행을 마쳤다면, 이 문서를 따라 첫 세션을 시작하�
 
 ```bash
 # tmux 세션 진입 (이미 안에 있으면 생략)
-tmux attach -t tso
+tmux attach -t myteam
 
 # secretary 창으로 이동
 # Ctrl+B 0  또는  Ctrl+B w → secretary 선택
@@ -45,14 +45,14 @@ Claude Code가 `CLAUDE.md`를 읽고 자아 복원을 시작합니다.
 
 ---
 
-## 2단계: tso_intent.yaml 작성 (선택 권장)
+## 2단계: your_intent.yaml 작성 (선택 권장)
 
-Secretary가 TSO의 현재 의중을 파악할 수 있도록 의도 파일을 작성합니다.
+Secretary가 YOU의 현재 의중을 파악할 수 있도록 의도 파일을 작성합니다.
 
 ```bash
 # 터미널 새 탭 또는 tmux monitor 창에서 (Secretary 창 말고)
-cat > ~/you_in_the_loop/tasks/tso_intent.yaml << 'EOF'
-# TSO 현재 의중 — Secretary가 세션 시작 시 읽는 파일
+cat > ~/you_in_the_loop/tasks/your_intent.yaml << 'EOF'
+# YOU 현재 의중 — Secretary가 세션 시작 시 읽는 파일
 updated: "TODO: 오늘 날짜 (YYYY-MM-DD)"
 
 current_focus: |
@@ -78,7 +78,7 @@ EOF
 이제 Secretary 창에서:
 
 ```
-나: tso_intent.yaml 읽었어?
+나: your_intent.yaml 읽었어?
 Secretary: [파일 내용 확인 후 현재 의중 요약]
 ```
 
@@ -169,7 +169,7 @@ Worker: [context_logs/state_worker-dev_{timestamp}.yaml 작성]
 ### 하루 시작
 
 ```bash
-tmux attach -t tso          # 세션 복귀
+tmux attach -t myteam          # 세션 복귀
 # Secretary 창에서:
 # claude (이미 켜져 있으면 그대로)
 ```
@@ -194,7 +194,7 @@ tmux attach -t tso          # 세션 복귀
 | Worker 창에서 직접 대화 | Secretary 창에서 위임 요청 |
 | 세션 종료 전 상태 저장 생략 | "상태 저장해" 습관화 |
 | 처음부터 Worker 여러 개 | Secretary 1개로 먼저 시작. 필요해지면 채용. |
-| tso_intent.yaml 안 씀 | 매주 업데이트. Secretary의 판단 기준이 됨. |
+| your_intent.yaml 안 씀 | 매주 업데이트. Secretary의 판단 기준이 됨. |
 
 ---
 
@@ -214,7 +214,7 @@ claude
 ```
 
 이제 Secretary는 운영 세부사항을 AR Manager에게 위임하고
-TSO와의 대화에만 집중할 수 있습니다.
+YOU와의 대화에만 집중할 수 있습니다.
 
 ---
 

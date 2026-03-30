@@ -2,17 +2,17 @@
 
 **당신의 개인 AI 국가 — Claude Code 멀티에이전트 운영 시스템 템플릿**
 
-당신이 운영자(TSO)가 되고, Claude Code 인스턴스들이 역할을 나눠 일하는 멀티터미널 시스템.
+당신이 운영자(YOU)가 되고, Claude Code 인스턴스들이 역할을 나눠 일하는 멀티터미널 시스템.
 Secretary가 전략을 조율하고, AR Manager가 운영을 감독하며, Worker들이 각 프로젝트를 실행한다.
 
-이 레포는 [tso_in_the_loop](https://github.com/your-username/tso_in_the_loop)에서 추출한 재현 가능한 뼈대입니다.
+이 레포는 [you_in_the_loop](https://github.com/your-username/you_in_the_loop)에서 추출한 재현 가능한 뼈대입니다.
 
 ---
 
 ## 핵심 개념
 
 ```
-당신 (TSO - The System Owner)
+당신 (YOU - The System Owner)
 │
 ├── Secretary        — 전략 보좌. 당신과의 유일한 접점.
 │       │
@@ -57,7 +57,7 @@ nano scripts/config.sh
 ```
 
 필수 변경 사항:
-- `TMUX_SESSION`: 사용할 tmux 세션 이름 (기본값: `tso`)
+- `TMUX_SESSION`: 사용할 tmux 세션 이름 (기본값: `myteam`)
 - `AR_WINDOW`: AR Manager 창 이름
 - `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`: 데일리 리포트용 (선택)
 
@@ -86,13 +86,13 @@ nano tasks/worker_status.yaml
 
 ```bash
 # 새 tmux 세션 시작
-tmux new-session -s tso -n secretary
+tmux new-session -s myteam -n secretary
 
 # AR Manager 창 추가
-tmux new-window -t tso -n ar-manager
+tmux new-window -t myteam -n ar-manager
 
 # Worker 창 추가 (필요한 만큼)
-tmux new-window -t tso -n worker-vibe
+tmux new-window -t myteam -n worker-vibe
 ```
 
 ### 6단계: Permission Gate 설치
@@ -148,7 +148,7 @@ crontab -e
 Secretary 창에서 Claude Code 시작:
 
 ```bash
-tmux select-window -t tso:secretary
+tmux select-window -t myteam:secretary
 claude
 ```
 
@@ -268,7 +268,7 @@ tail -20 ~/you_in_the_loop/permission_queue/gate.log
 
 - **Context Codec 논문:** 이 시스템의 자아 복원 원리 (Zenodo)
 - **INIT.md:** Multi-View Codec Decoder 명세 (이 레포에 포함)
-- **원본 시스템:** tso_in_the_loop
+- **원본 시스템:** you_in_the_loop
 
 ---
 

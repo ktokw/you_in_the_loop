@@ -181,8 +181,8 @@ nano ~/you_in_the_loop/scripts/config.sh
 ```
 
 최소한 다음을 확인하세요:
-- `TMUX_SESSION`: tmux 세션 이름 (기본값 `tso` 그대로도 OK)
-- `AR_WINDOW`: AR Manager 창 이름 (기본값 `tso:ar-manager` OK)
+- `TMUX_SESSION`: tmux 세션 이름 (기본값 `myteam` 그대로도 OK)
+- `AR_WINDOW`: AR Manager 창 이름 (기본값 `myteam:ar-manager` OK)
 - `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID`: 사용 안 하면 빈 값으로 두세요
 
 저장: `Ctrl+O` → `Enter` → `Ctrl+X`
@@ -206,7 +206,7 @@ bash ~/you_in_the_loop/scripts/install.sh
 1. `context_logs/`, `ar_signal_queue/`, `dispatch_inbox/` 등 디렉토리 생성
 2. crontab 등록 (dispatch_router, watch_signals, org_snapshot, daily_report)
 3. `~/.claude/settings.json`에 permission_gate 훅 등록
-4. tmux 세션 `tso` 생성 (secretary, ar-manager, worker-1~6 창)
+4. tmux 세션 `myteam` 생성 (secretary, ar-manager, worker-1~6 창)
 5. `01_origin/self_state/`에 최소 자아 파일 복사
 
 > **idempotent:** 이미 설치된 경우 중복 실행해도 안전합니다.
@@ -217,7 +217,7 @@ bash ~/you_in_the_loop/scripts/install.sh
 
 ```bash
 # tmux 세션에 연결
-tmux attach -t tso
+tmux attach -t myteam
 
 # secretary 창으로 이동
 # 방법 1: Ctrl+B 0 (창 번호로 이동)

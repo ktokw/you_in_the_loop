@@ -8,7 +8,7 @@
 ## 파일 흐름
 
 ```
-Secretary / TSO
+Secretary / YOU
     │ disp_*.yaml 파일 작성 (status: pending)
     ▼
 dispatch_inbox/

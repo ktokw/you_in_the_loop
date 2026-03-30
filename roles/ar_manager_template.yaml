@@ -45,7 +45,7 @@ worker_monitoring:
     context_pct_critical: 85     # 85% 이상 → 즉시 상태 저장 요청
 
 signal_types:
-  escalation: "TSO 판단 필요 → Secretary에게 즉시 전달"
+  escalation: "YOU 판단 필요 → Secretary에게 즉시 전달"
   fyi: "정보성 — Secretary가 맥락으로 흡수"
   dispatch_req: "Secretary 전략 판단 요청"
 

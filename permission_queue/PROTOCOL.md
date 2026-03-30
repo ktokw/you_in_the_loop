@@ -13,7 +13,7 @@ Worker (Claude 세션)
 permission_queue/{req_id}.json  (status: pending)
     │ AR Manager 확인
     ▼
-처리 결정 (승인 / 거부 / TSO 에스컬레이션)
+처리 결정 (승인 / 거부 / YOU 에스컬레이션)
     │
     ▼
 Worker에게 결과 전달 → status: resolved
@@ -32,7 +32,7 @@ Worker에게 결과 전달 → status: resolved
   "reason": "rm on potentially important file",
   "timestamp": "2026-01-01T09:00:00",
   "req_id": "req_1711688400123",
-  "worker_id": "tso:worker-vibe",
+  "worker_id": "myteam:worker-vibe",
   "status": "pending"
 }
 ```
@@ -46,7 +46,7 @@ Worker에게 결과 전달 → status: resolved
 3. 판단:
    - **승인**: Worker 창에 "진행해도 됩니다" 전달 → status: resolved
    - **거부**: Worker 창에 "이 작업은 금지됩니다" + 대안 제시 → status: resolved
-   - **TSO 에스컬레이션**: ar_signal_queue/에 escalation 작성 → Secretary 보고
+   - **YOU 에스컬레이션**: ar_signal_queue/에 escalation 작성 → Secretary 보고
 4. 파일 status를 `resolved`로 업데이트
 
 ---
@@ -70,9 +70,9 @@ with open('permission_queue/{req_id}.json', 'w') as f:
 
 ---
 
-## TSO 에스컬레이션 기준
+## YOU 에스컬레이션 기준
 
-AR Manager가 직접 처리하지 않고 TSO까지 올려야 하는 경우:
+AR Manager가 직접 처리하지 않고 YOU까지 올려야 하는 경우:
 - 실매매 / 결제 관련 API 호출
 - 외부 서비스 공개 (publish, deploy to production)
 - 중요 파일의 비가역적 삭제
@@ -85,6 +85,6 @@ AR Manager가 직접 처리하지 않고 TSO까지 올려야 하는 경우:
 모든 gate 결정은 `permission_queue/gate.log`에 자동 기록됩니다.
 
 ```
-[timestamp] [worker:tso:worker-vibe] [task:DISP-001] [Bash] ESCALATE | rm on important file
-[timestamp] [worker:tso:worker-vibe] [task:DISP-001] [Read] ALLOW | read-only tool
+[timestamp] [worker:myteam:worker-vibe] [task:DISP-001] [Bash] ESCALATE | rm on important file
+[timestamp] [worker:myteam:worker-vibe] [task:DISP-001] [Read] ALLOW | read-only tool
 ```

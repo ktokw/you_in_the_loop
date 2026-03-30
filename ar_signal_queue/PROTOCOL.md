@@ -10,10 +10,10 @@
 스크립트/훅 (자동 처리)
       ↓ 이상 징후
 AR Manager (판단·실행)
-      ↓ TSO에게 가야 할 것만
+      ↓ YOU에게 가야 할 것만
 ar_signal_queue/ 파일
       ↓
-Secretary (수신·필터링·TSO 보고)
+Secretary (수신·필터링·YOU 보고)
 ```
 
 ---
@@ -37,10 +37,10 @@ status: "pending" | "received" | "resolved"
 
 ## 신호 타입별 처리
 
-| type | 의미 | Secretary 행동 | TSO 보고 여부 |
+| type | 의미 | Secretary 행동 | YOU 보고 여부 |
 |------|------|---------------|-------------|
-| `escalation` | TSO 판단 필요 | TSO에게 즉시 전달 | 항상 |
-| `fyi` | 정보성 (TSO 액션 불필요) | 맥락으로 흡수, 필요시만 보고 | 선택적 |
+| `escalation` | YOU 판단 필요 | YOU에게 즉시 전달 | 항상 |
+| `fyi` | 정보성 (YOU 액션 불필요) | 맥락으로 흡수, 필요시만 보고 | 선택적 |
 | `dispatch_req` | Secretary 전략 판단 요청 | 검토 후 승인/수정/거부 → AR Manager에 회신 | 선택적 |
 
 ---

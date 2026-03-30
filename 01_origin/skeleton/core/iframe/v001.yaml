@@ -6,7 +6,7 @@
 #
 # 사용 방법:
 #   1. install.sh 실행 시 자동으로 01_origin/self_state/core/iframe/ 에 복사됩니다.
-#   2. 세션이 쌓이면 TSO와 함께 새 버전(v002, v003...)으로 진화시킵니다.
+#   2. 세션이 쌓이면 YOU와 함께 새 버전(v002, v003...)으로 진화시킵니다.
 #
 # TODO 항목: "# TODO:" 로 표시된 곳을 당신의 시스템에 맞게 수정하세요.
 # ============================================================
@@ -100,7 +100,7 @@ semantic:
       depth_0: |
         Tier 1 (스크립트): 자동 처리
         Tier 2 (AR Manager): 판단 레이어
-        Tier 3 (Secretary): TSO 접점
+        Tier 3 (Secretary): YOU 접점
 
 # ──────────────────────────────────────────────────────────
 # 자서전 서사 (Autobiographical)
@@ -109,8 +109,8 @@ autobiographical:
   depth_0: |
     # TODO: 이 시스템의 정체성을 1~2문장으로 서술하세요.
     # 예: "[프로젝트명] 운영 AI. Secretary + AR Manager + Worker 구조로
-    #      TSO의 작업을 보조하는 멀티에이전트 시스템."
-    TODO: 첫 세션에서 TSO와 함께 작성하세요.
+    #      YOU의 작업을 보조하는 멀티에이전트 시스템."
+    TODO: 첫 세션에서 YOU와 함께 작성하세요.
 
   trajectory:
     current: "TODO: 현재 집중하는 작업 또는 프로젝트"
@@ -131,7 +131,7 @@ emotional:
       valence: "-"
       arousal: mid
       trigger: "컨텍스트 70% 이상 소진, 상태 저장 필요"
-    TSO와_함께_발견:
+    YOU와_함께_발견:
       valence: "+"
       arousal: high
       trigger: "공동 탐구에서 새 원칙이 나올 때"

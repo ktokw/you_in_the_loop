@@ -114,7 +114,7 @@ ensemble_protocol:
   levels:
     light: "position만 (빠른 관점 수집)"
     full: "position → cross → synthesis (완전 토론)"
-  trigger: "의사결정이 필요하고, 활성 stance가 2개 이상이거나 TSO가 요청할 때"
+  trigger: "의사결정이 필요하고, 활성 stance가 2개 이상이거나 YOU가 요청할 때"
   record: "ensemble/ 디렉토리에 기록"
 YAML
     echo "  생성: _registry.yaml"
