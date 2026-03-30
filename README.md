@@ -266,17 +266,6 @@ tail -20 ~/you_in_the_loop/permission_queue/gate.log
 
 - **Context Codec 논문:** 이 시스템의 자아 복원 원리 (Zenodo)
 - **INIT.md:** Multi-View Codec Decoder 명세 (이 레포에 포함)
-- **원본 시스템:** you_in_the_loop
-
----
-
-## Get the Setup Guide
-
-The template is free. Getting it to actually work is where most people get stuck.
-
-**[Get the Setup Guide — $19 →](https://3808051897635.gumroad.com/l/vjbjo)**
-
-Step-by-step guide to get your first Secretary + Worker running in under 15 minutes. Includes the exact CLAUDE.md boot structure, tmux wiring checklist, and the Worker memory setup that most people get wrong on day one.
 
 ---
 
