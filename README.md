@@ -5,8 +5,6 @@
 당신이 운영자(YOU)가 되고, Claude Code 인스턴스들이 역할을 나눠 일하는 멀티터미널 시스템.
 Secretary가 전략을 조율하고, AR Manager가 운영을 감독하며, Worker들이 각 프로젝트를 실행한다.
 
-이 레포는 [you_in_the_loop](https://github.com/your-username/you_in_the_loop)에서 추출한 재현 가능한 뼈대입니다.
-
 ---
 
 ## 핵심 개념
