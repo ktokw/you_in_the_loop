@@ -26,6 +26,10 @@ permission_queue/*.json
 ar_signal_queue/sig_*.yaml
 dispatch_inbox/disp_*.yaml
 
+# ── 유료 콘텐츠 (Gumroad 판매용, 공개 금지) ──
+SETUP_GUIDE.md
+SETUP_GUIDE_*.md
+
 # ── 민감 정보 ──
 .env
 *.env.local
