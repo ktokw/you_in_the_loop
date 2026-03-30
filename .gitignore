@@ -1,0 +1,45 @@
+# ============================================================
+# you_in_the_loop — .gitignore
+# 개인 데이터와 런타임 파일을 Git에서 제외합니다.
+# ============================================================
+
+# ── 개인 자아 데이터 (절대 커밋 금지) ──
+01_origin/self_state/core/iframe/
+01_origin/self_state/core/identity_delta/
+01_origin/self_state/core/somatic_encoded.yaml
+01_origin/self_state/roles/
+01_origin/self_state/calibration/probes.yaml
+01_origin/self_state/cloud_memory/
+01_origin/self_state/session_log/
+01_origin/self_state/archive/
+01_origin/identity.md
+01_origin/mission.md
+
+# ── TSO 의중 / 프로젝트 현황 ──
+tasks/tso_intent.yaml
+tasks/org_health_snapshot.yaml
+tasks/worker_status.yaml
+
+# ── 런타임 로그 / 상태 파일 ──
+context_logs/
+permission_queue/*.json
+ar_signal_queue/sig_*.yaml
+dispatch_inbox/disp_*.yaml
+
+# ── 민감 정보 ──
+.env
+*.env.local
+scripts/config.local.sh
+
+# ── macOS ──
+.DS_Store
+
+# ── Python ──
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ── Node ──
+node_modules/
