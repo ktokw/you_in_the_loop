@@ -1,0 +1,33 @@
+# your_intent.yaml — YOU의 현재 의중 (Secretary가 질문 기반으로 추출)
+# AR Manager가 dispatch 우선순위 결정 시 참고하는 문서
+# 주기적으로 갱신하여 시스템이 당신의 방향을 이해하도록 합니다.
+
+updated_at: ""
+written_by: "secretary"
+
+# ── 지금 당장 집중할 것 ──
+immediate:
+  focus: ""               # 현재 최우선 프로젝트
+  reason: ""              # 왜 이것이 우선인가
+  confidence: ""          # 성공 가능성에 대한 당신의 판단
+
+# ── 진짜 하고 싶은 것 ──
+genuine_goals:
+  project_a:
+    priority: ""
+    note: ""
+  project_b:
+    priority: ""
+    note: ""
+
+# ── 제약 ──
+constraints:
+  budget: ""              # 예산 상황
+  time: ""                # 시간 제약
+
+# ── AR Manager 자율 배정 기준 ──
+ar_manager_guidance:
+  top_priority: ""        # 최우선 배정 대상
+  second_priority: ""     # 차순위
+  hold: ""                # 보류 (YOU 직접 관할)
+  do_not_disturb: ""      # 에스컬레이션 하지 말 것
