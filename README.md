@@ -173,22 +173,14 @@ git clone https://github.com/your-username/you_in_the_loop.git ~/you_in_the_loop
 cd ~/you_in_the_loop
 
 # 2. 설정
-cp scripts/config.sh.example scripts/config.sh
-nano scripts/config.sh  # TMUX_SESSION, AR_WINDOW 등 설정
+nano scripts/config.sh  # TMUX_SESSION, AR_WINDOW 등 TODO 항목 편집
 
-# 3. tmux 세션 구성
-bash scripts/tmux_setup.sh
+# 3. 설치 (tmux 세션 생성 + crontab 등록 + permission_gate 훅 + 권한 설정)
+bash scripts/install.sh
 
-# 4. 훅 설치 (Permission Gate + Hook A~G)
-# ~/.claude/settings.json에 hooks 섹션 추가 — docs/02_first-session.md 참조
-
-# 5. crontab 등록
-crontab -e
-# */5 * * * * ~/you_in_the_loop/scripts/session_keepalive.sh
-# * * * * * ~/you_in_the_loop/scripts/dispatch_router.sh
-
-# 6. 첫 부팅
-tmux select-window -t myteam:secretary
+# 4. 첫 부팅
+tmux attach -t myteam         # 또는 tmux에 이미 있으면 생략
+# Ctrl+B 0  →  secretary 창으로 이동
 claude
 ```
 
