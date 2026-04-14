@@ -1,0 +1,11 @@
+standing_tasks:
+- cooldown: 24h
+  id: STAND-QA-001
+  priority: high
+  report_to: ar-manager-marcus (요약)
+  task: 시스템 적대적 검토 — TSO가 쉬고 있다고 가정하고 시스템 구멍 탐색. deficiency_log에 append
+- cooldown: 48h
+  id: STAND-QA-002
+  priority: medium
+  report_to: ar-manager-marcus (fyi)
+  task: 최근 change_log.yaml 항목의 실제 동작 검증 — 구현됐다고 기록된 것이 실제로 작동하는지

@@ -1,0 +1,11 @@
+standing_tasks:
+- id: STAND-WRITER-001
+  task: 완성된 소설 편 교정 — 발행된 편 오탈자/일관성 재검토, 소설 meta 노트 업데이트
+  priority: low
+  cooldown: 7d
+  report_to: TSO (직접)
+- id: STAND-WRITER-002
+  task: 다음 편 구조 설계 — 시리즈 흐름 분석, 복선/교차 참조 메모 작성 (집필 착수 전 준비)
+  priority: medium
+  cooldown: 3d
+  report_to: TSO (직접)

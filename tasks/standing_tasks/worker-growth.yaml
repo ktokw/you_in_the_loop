@@ -1,0 +1,6 @@
+standing_tasks:
+- id: STAND-GROWTH-001
+  task: growth/ 디렉토리 콘텐츠 검토 — 오래된 초안 정리, 발행 가능한 것 식별
+  priority: low
+  cooldown: 7d
+  report_to: secretary-morgan (fyi)

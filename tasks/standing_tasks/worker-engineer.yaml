@@ -1,0 +1,16 @@
+standing_tasks:
+- id: STAND-ENG-001
+  task: deficiency_log.yaml에서 자기 도메인(scripts/, hooks/) 미해결 항목 1건 자율 수정
+  priority: medium
+  cooldown: 4h
+  report_to: ar-manager-marcus (fyi)
+- id: STAND-ENG-002
+  task: scripts/ 디렉토리 내 미사용 스크립트 정리 또는 TODO 주석 처리
+  priority: low
+  cooldown: 24h
+  report_to: ar-manager-marcus (fyi)
+- id: STAND-ENG-003
+  task: Hook A~G 통합 테스트 — 각 훅이 정상 동작하는지 검증
+  priority: low
+  cooldown: 48h
+  report_to: worker-qa-vera (검증 요청)

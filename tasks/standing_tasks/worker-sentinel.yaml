@@ -1,0 +1,11 @@
+standing_tasks:
+- id: STAND-SENTINEL-001
+  task: Stock Sentinel 로그 점검 — 최근 알림 정확도 확인, 오탐/미탐 기록
+  priority: medium
+  cooldown: 12h
+  report_to: secretary-morgan (fyi)
+- id: STAND-SENTINEL-002
+  task: crontab 작업 정상 동작 확인 — 실행 로그 점검
+  priority: low
+  cooldown: 24h
+  report_to: ar-manager-marcus (fyi)

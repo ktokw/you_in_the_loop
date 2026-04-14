@@ -1,0 +1,20 @@
+standing_tasks:
+- id: STAND-PAPER-001
+  task: 논문 draft 내 TODO/TBD/FIXME 주석 정리 및 해결
+  priority: medium
+  cooldown: 12h
+  report_to: secretary-morgan (fyi)
+- id: STAND-PAPER-002
+  task: 참고문헌 목록 검증 — 본문에서 인용된 것과 references 일치 확인
+  priority: low
+  cooldown: 7d
+  report_to: secretary-morgan (fyi)
+- id: STAND-PAPER-003
+  task: "외부 AI agent 운영 사례/프레임워크 조사 + 시스템 적용 인사이트 추출.\n조사 대상: 학술 논문, 블로그, 오픈소스 프로젝트,\
+    \ 컨퍼런스 발표 등.\n범위: multi-agent orchestration, task routing, autonomous improvement,\
+    \ context management 등.\n산출물: tasks/research/external_insights_{date}.md\n  -\
+    \ 발견한 사례/프레임워크 요약\n  - 우리 시스템에 적용 가능한 포인트 (구체적으로)\n  - 적용 권고: 즉시/검토/참고 분류\nMarcus가\
+    \ 검토 후 적용 여부 판단.\n"
+  priority: high
+  cooldown: 3d
+  report_to: ar-manager-marcus (fyi)

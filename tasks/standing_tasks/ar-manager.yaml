@@ -1,0 +1,16 @@
+standing_tasks:
+- cooldown: 4h
+  id: STAND-AR-001
+  priority: medium
+  report_to: secretary-morgan (fyi)
+  task: ar_signal_queue 순회 — 처리 안 된 신호 정리, stale 신호 아카이브
+- cooldown: 4h
+  id: STAND-AR-002
+  priority: medium
+  report_to: self
+  task: worker_status.json 정합성 점검 — stale 상태 갱신, 비정상 값 수정
+- cooldown: 6h
+  id: STAND-AR-003
+  priority: high
+  report_to: secretary-morgan (fyi)
+  task: dispatch_inbox 미완료 dispatch 점검 — 24시간 이상 dispatched 상태 → 재배정 검토

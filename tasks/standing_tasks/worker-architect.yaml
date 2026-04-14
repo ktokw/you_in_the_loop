@@ -1,0 +1,36 @@
+standing_tasks:
+- id: STAND-ARCH-001
+  task: 아키텍처 감사 — CLAUDE.md, INIT.md, dispatch 프로토콜 간 불일치 점검
+  priority: medium
+  cooldown: 7d
+  report_to: ar-manager-marcus (fyi)
+- id: STAND-ARCH-002
+  task: ADR 문서 갱신 필요 여부 점검. 최근 change_log.yaml 대비 미반영 결정사항 확인
+  priority: low
+  cooldown: 7d
+  report_to: ar-manager-marcus (fyi)
+- id: STAND-ARCH-003
+  task: 시스템 다이어그램(docs/system_diagram.md) 현행화 — 최근 변경사항 반영
+  priority: low
+  cooldown: 14d
+  report_to: secretary-morgan (fyi)
+
+- id: STAND-ARCH-004
+  task: |
+    Claude Code + AI 에이전트 생태계 정찰:
+    1. Claude Code 공식 문서/변경점 정독 — 새 훅, 도구, 기능 확인. 우리가 안 쓰고 있는 것 식별.
+    2. 주요 AI 코딩 에이전트 레포 (superpowers, oh-my-claudecode, everything-claude-code, gstack 등) 변경점 확인.
+    3. 관련 논문/기술 블로그 신규 발행물 서치.
+    산출물: tasks/research/에 발견 사항 기록. 흡수 가치 있는 것은 ADOPT/ADAPT 판정 포함.
+  priority: medium
+  cooldown: 7d
+  report_to: ar-manager-marcus (fyi)
+
+- id: STAND-ARCH-005
+  task: |
+    훅-스크립트 연결 검증:
+    settings.local.json에 등록된 훅 ↔ scripts/ 실제 파일 교차 확인.
+    scripts/에 존재하지만 훅에 미등록된 것, 훅에 등록되었지만 파일 없는 것 탐지.
+  priority: medium
+  cooldown: 14d
+  report_to: ar-manager-marcus (fyi)

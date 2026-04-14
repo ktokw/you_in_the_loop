@@ -83,6 +83,55 @@ standing_tasks:
 
 dispatch 완료 후, 같은 프로젝트 내 다음 작업이 명확하면 AR Manager 승인 없이 즉시 착수.
 
+### 선임 엔지니어 구조 (opus × sonnet)
+
+도메인 전문성이 높은 Worker를 선임으로 임명해 opus×sonnet 효율을 극대화.
+
+- **선임 (opus)**: 기술 판단, 서브-dispatch 작성, 피어리뷰
+- **실행 (sonnet)**: 선임의 명세에 따라 구현. 완료 후 선임 리뷰 필수
+
+```yaml
+# worker-engineer.md 발췌
+선임 엔지니어: Kai (opus)
+  역할: 개발 방향 결정, sub-dispatch 분할, 피어리뷰
+  예) 나쁜 sub-dispatch: "session_keepalive.sh 수정해줘"
+      좋은 sub-dispatch: "session_keepalive.sh 169번째 줄 grep 패턴에 X 추가"
+
+실행 엔지니어: Finn, Leo (sonnet)
+  역할: 선임 명세대로 구현 → 완료 후 선임 리뷰 필수
+```
+
+### Learnings JSONL
+
+세션 간 학습을 누적하는 경량 지식 베이스. compact 후에도 살아남는 유일한 지식 경로.
+
+```bash
+# Worker가 직접 기록
+bash scripts/log_learning.sh \
+  --type failure \           # failure | workaround | insight
+  --severity high \          # high: 1h+ 낭비 방지 | medium | low
+  --role worker-engineer \
+  --context "DISP-ENG-XXX" \
+  --message "mkstemp 없이 고정 .tmp 사용 시 ENOENT 경쟁 조건 발생"
+```
+
+부팅 시 자동 프리로드 (lite boot): `context_logs/learnings_{역할}.jsonl` 최근 5건 + high severity 전체.
+
+### Inter-Worker 메시지
+
+Worker 간 직접 통신 (AR Manager 경유 없이 P2P 신호).
+
+```yaml
+# ar_signal_queue/msg_{timestamp}_{from}_{to}.yaml
+type: msg
+from: worker-qa-vera
+to: worker-engineer-finn
+subject: "DEF-20260414-14 검증 완료"
+body: "mkstemp 전환 전 케이스 3건 모두 PASS"
+priority: normal
+status: unread   # → session_keepalive가 수신자 tmux로 전달 후 delivered
+```
+
 ### Hook 체계 (A~G)
 
 Claude Code의 lifecycle 이벤트에 연결된 자동화 훅:
@@ -115,7 +164,9 @@ fswatch (파일 변경 감지)
 session_keepalive.sh (cron 5분)
   ├── Worker 프로세스 죽음 → 자동 재시작 (claude --resume)
   └── Worker idle 감지 → standing task 트리거
-      └── exponential backoff (30분 → 1시간 → 2시간)
+      ├── exponential backoff (1시간 기본 → 선형 증가)
+      ├── 파일 변경 감지 스킵: dispatch_inbox 변경 없으면 재트리거 안 함
+      └── 트리거 즉시 last_run 갱신 → cooldown 우회 방지
 ```
 
 ### Boot Mode (Lazy Full Boot)

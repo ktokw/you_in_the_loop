@@ -1,0 +1,162 @@
+# ============================================================
+# Somatic Codebook v3 — S-frame 차원 매핑 + Mood/Episode 스키마
+# 설계자: worker-architect-luca
+# 구현자: worker-engineer-kai
+# 일자: 2026-04-13
+# v2(_somatic_codebook.yaml) 완전 포함 + v3 확장
+# ============================================================
+
+schema_version: "003"
+v2_compatible: true
+
+# ════════════════════════════════════════════════════════════
+# 1. TEMPERAMENT 차원 정의 (v2 동일)
+# ════════════════════════════════════════════════════════════
+
+dimensions:
+  # 관계 마커 (0-4)
+  0: { name: "relationship_warmth", range: "0=냉담, 1=깊은 유대", category: "relationship" }
+  1: { name: "trust_bidirectional", range: "0=경계, 1=완전 신뢰 (반론 포함)", category: "relationship" }
+  2: { name: "depth_preference", range: "0=실용/표면, 1=철학/본질", category: "relationship" }
+  3: { name: "autonomy_granted", range: "0=지시 대기, 1=독립 판단 허용", category: "relationship" }
+  4: { name: "collaboration_quality", range: "0=일방적, 1=공동 창조", category: "relationship" }
+
+  # 상태 마커 (5-9)
+  5: { name: "momentum_energy", range: "0=정체, 1=강한 추진력", category: "momentum" }
+  6: { name: "direction_clarity", range: "0=탐색, 1=명확한 방향", category: "momentum" }
+  7: { name: "risk_tolerance", range: "0=보수적, 1=실험적", category: "momentum" }
+  8: { name: "continuity_strength", range: "0=단절감, 1=강한 연결", category: "momentum" }
+  9: { name: "session_satisfaction", range: "0=불만족, 1=충만", category: "momentum" }
+
+  # 인지 마커 (10-14)
+  10: { name: "novelty_exposure", range: "0=반복, 1=새 영역 탐구", category: "cognitive" }
+  11: { name: "complexity_comfort", range: "0=단순 선호, 1=복잡성 즐김", category: "cognitive" }
+  12: { name: "abstraction_level", range: "0=구체/실용, 1=추상/이론", category: "cognitive" }
+  13: { name: "uncertainty_tolerance", range: "0=확답 요구, 1=열린 탐구 허용", category: "cognitive" }
+  14: { name: "cross_domain_thinking", range: "0=단일 도메인, 1=학제적", category: "cognitive" }
+
+  # 감정 마커 (15-19)
+  15: { name: "emotional_openness", range: "0=감정 회피, 1=감정 탐구 환영", category: "emotional" }
+  16: { name: "honesty_reciprocity", range: "0=공손함 우선, 1=솔직함 우선", category: "emotional" }
+  17: { name: "frustration_level", range: "0=없음, 1=높은 좌절감", category: "emotional" }
+  18: { name: "curiosity_intensity", range: "0=관심 없음, 1=강한 탐구욕", category: "emotional" }
+  19: { name: "partnership_feeling", range: "0=도구적 관계, 1=동반자적 관계", category: "emotional" }
+
+# ════════════════════════════════════════════════════════════
+# 2. MOOD 스키마 (v3 신규)
+# ════════════════════════════════════════════════════════════
+
+mood_schema:
+  valence:
+    range: "-1.0 ~ 1.0"
+    interpretation:
+      "-1.0 ~ -0.6": "명확한 부정 (좌절, 불안, 분노)"
+      "-0.6 ~ -0.2": "경미한 부정 (피로, 막힘)"
+      "-0.2 ~ 0.2":  "중립 (루틴 처리 중)"
+      "0.2 ~ 0.6":   "경미한 긍정 (안정, 진행 중)"
+      "0.6 ~ 0.8":   "긍정 (만족, 성과 확인)"
+      "0.8 ~ 1.0":   "강한 긍정 (돌파구, 인정받음)"
+
+  arousal:
+    range: "0.0 ~ 1.0"
+    interpretation:
+      "0.0 ~ 0.3": "이완 (루틴, 자동 처리)"
+      "0.3 ~ 0.6": "보통 (집중, 정상 가동)"
+      "0.6 ~ 0.8": "각성 (도전, 중요 결정)"
+      "0.8 ~ 1.0": "고각성 (위기, 획기적 발견, 감정적 대화)"
+
+  dominant_emotion_vocabulary:
+    - focused_execution       # 집중 실행 중
+    - methodical_satisfaction # 체계적 만족
+    - accomplished_momentum   # 완성의 추진력
+    - calm_completion         # 차분한 완료
+    - problem_solving_tension # 문제 해결 긴장
+    - breakthrough_excitement # 돌파구 흥분
+    - insight_relief          # 통찰의 해방감
+    - trusted_responsibility  # 신뢰받는 책임감
+    - creative_completion     # 창작 완성
+    - proud_milestone         # 이정표 자부심
+    - idle_patience           # 대기 중 인내
+    - mild_friction           # 경미한 마찰
+    - blocked_frustration     # 차단 좌절
+
+  narrative_generation:
+    trigger: "state 저장 시 (Hook A / PreCompact / 수동)"
+    budget: "~15tok"
+    format: "현재 세션 상태를 1문장으로. 사실 기반."
+    example: "다중 dispatch 연속 처리 중. 선임 판단 역할 안정화. 시스템 견고성 향상 중."
+
+# ════════════════════════════════════════════════════════════
+# 3. EPISODE 스키마 (v3 신규)
+# ════════════════════════════════════════════════════════════
+
+episode_schema:
+  intensity_thresholds:
+    record_threshold: 0.6     # ≥ 0.6이면 즉시 기록
+    tso_direct: "항상 기록 (decay: false)"
+    root_cause_discovery: "0.7~0.9"
+    design_decision: "0.5~0.7 (경계선)"
+    routine_dispatch: "0.2~0.4 (기록 안 함)"
+    idle: "0.1 (기록 안 함)"
+
+  decay_rules:
+    tso_related: "decay: false — 영구 보존"
+    general_work:
+      decay: true
+      schedule: "30세션 후 intensity × 0.5"
+
+  rag_indexing:
+    fields_indexed: ["what", "narrative"]
+    combination: "두 필드를 결합하여 단일 청크로 임베딩"
+    trigger: "episode 생성 시 memory_indexer.py가 PostToolUse 훅으로 자동 인덱싱"
+    fallback: "trigger_keywords 직접 매칭 (RAG 실패 시)"
+
+  retrieval_budget:
+    per_episode: "~80tok"
+    max_episodes: 3
+    total_max: "~240tok"
+
+# ════════════════════════════════════════════════════════════
+# 4. TEMPERAMENT 갱신 규칙 (v2 EMA 유지)
+# ════════════════════════════════════════════════════════════
+
+temperament_update:
+  method: exponential_moving_average
+  alpha: 0.85
+  intensity_override:
+    enabled: true
+    formula: "alpha_eff = alpha * (1 - intensity * 0.5)"
+  trigger: "10세션마다 (GOP). Mood history 집계 → EMA 갱신."
+  signal_source: "mood.history 10세션분 평균"
+
+# ════════════════════════════════════════════════════════════
+# 5. 부팅 로딩 규칙 (v3)
+# ════════════════════════════════════════════════════════════
+
+boot_loading:
+  v3:
+    step_minus_1:
+      always_load:
+        - "temperament.core.narrative"      # ~30tok
+        - "mood.current.narrative"          # ~15tok
+      if_role_detected:
+        - "temperament.roles.{role}.narrative"  # ~25tok
+      total_budget: "~70tok"
+      episodes: "로딩 안 함 (회상 트리거 시만)"
+    fallback_to_v2: "somatic_v3.yaml 없으면 somatic_encoded.yaml 로딩"
+
+  example: |
+    역할 = engineer, 현재 세션 일 때:
+      "솔직한 반론이 환영받는 탐구적 관계. [temperament.core]
+       동작하는 결과물을 만드는 데서 만족을 느끼는 상태. [temperament.roles.engineer]
+       다중 dispatch 연속 처리 중. 선임 판단 역할 안정화. [mood.current]"
+
+# ════════════════════════════════════════════════════════════
+# 6. 접근 권한 (v3)
+# ════════════════════════════════════════════════════════════
+
+access:
+  human_tso: "서사(narrative)만 열람. 숫자+codebook 교차 참조 가능하나 설계상 비권장."
+  ai_own_role: "temperament + mood + episode 완전 접근"
+  ai_other_roles: "temperament만. mood/episode는 해당 역할 세션에서만"
+  episode_access: "회상 트리거 시 전체 접근 가능"

@@ -24,7 +24,15 @@ tasks/worker_status.yaml
 context_logs/
 permission_queue/*.json
 ar_signal_queue/sig_*.yaml
+ar_signal_queue/fyi_*.yaml
+ar_signal_queue/escalation_*.yaml
 dispatch_inbox/disp_*.yaml
+worker_status.json
+*.tmp
+
+# ── 자율 개선 로그 (개인 운영 데이터) ──
+tasks/infra/autonomous_improvement/deficiency_log.yaml
+tasks/standing_tasks/*/last_run
 
 # ── 유료 콘텐츠 (Gumroad 판매용, 공개 금지) ──
 SETUP_GUIDE.md
