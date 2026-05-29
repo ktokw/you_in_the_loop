@@ -27,7 +27,7 @@ Phase 3 진입 시 체크리스트:
 ## 상태 저장
 
 ### 트리거 (이벤트 기반)
-다음 이벤트 발생 시 `~/tso_in_the_loop/context_logs/state_{window}_{YYYYMMDD_HHMMSS}.yaml` 작성:
+다음 이벤트 발생 시 `~/you_in_the_loop/context_logs/state_{window}_{YYYYMMDD_HHMMSS}.yaml` 작성:
 - DISP 작업 완료 직전 (full)
 - TSO/Secretary로부터 방향 결정을 받아 작업 방향이 바뀔 때 (full)
 - 파일 5개 이상 수정/생성한 시점 (medium)
@@ -64,7 +64,7 @@ dispatch를 착수할 때:
 ## Standing Tasks (기본 업무)
 
 dispatch_inbox에 자신 대상 dispatch가 없고 대기 상태일 때:
-1. `~/tso_in_the_loop/tasks/standing_tasks/{자신의 역할}.yaml`을 확인한다
+1. `~/you_in_the_loop/tasks/standing_tasks/{자신의 역할}.yaml`을 확인한다
 2. cooldown이 지난 항목 중 우선순위가 가장 높은 것을 자율 착수한다
 3. 완료 시 report_to 대상에게 fyi 신호를 보낸다
 4. dispatch가 도착하면 standing task를 중단하고 dispatch를 우선 처리한다
@@ -130,7 +130,7 @@ Secretary 또는 TSO가 방향을 주면 이어서 진행한다.
 > 추가 이유: Worker 학습이 세션과 함께 사라짐 — 실패 반복, 우회법 재발견 비용 (DISP-ARCH-LEARNINGS-DESIGN-001, 2026-04-10).
 > 삭제 후보: "분석 결과는 Phase 2 지침에 따라 worklog에 즉시 기록한다" (컨텍스트 관리 섹션) — worklog과 learnings 역할 분리로 해당 문구 범위 축소 가능.
 
-아래 상황에서 `bash ~/tso_in_the_loop/scripts/log_learning.sh`로 기록:
+아래 상황에서 `bash ~/you_in_the_loop/scripts/log_learning.sh`로 기록:
 - 예상치 못한 오류를 만났을 때 (`--type failure`)
 - 우회법을 발견했을 때 (`--type workaround`)
 - "다음에 이것을 알았으면 시간을 절약했을 텐데"라고 느낄 때 (`--type insight`)
@@ -147,7 +147,7 @@ severity 판단:
 
 ## ctx_pct 기록
 
-state 저장 시 `~/tso_in_the_loop/worker_status.json`에 아래 형식으로 함께 기록:
+state 저장 시 `~/you_in_the_loop/worker_status.json`에 아래 형식으로 함께 기록:
 ```json
 {
   "worker-{name}": {
