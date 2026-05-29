@@ -13,7 +13,7 @@ fi
 WINDOW_SAFE="${WINDOW//[:/]/_}"
 TS=$(date +%Y%m%d_%H%M%S)
 TS_ISO=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-STATE_DIR=~/tso_in_the_loop/context_logs
+STATE_DIR=~/you_in_the_loop/context_logs
 
 mkdir -p "$STATE_DIR"
 
@@ -33,12 +33,12 @@ fi
 
 # 2. 최근 완료된 dispatch 자동 done 처리 (DEF elliot-03, kai-09)
 #    ar_signal_queue의 최근 5개 sig 파일에서 ref_dispatch 추출 → dispatch yaml status 갱신
-for sig in $(ls -t ~/tso_in_the_loop/ar_signal_queue/sig_*.yaml 2>/dev/null | head -5); do
+for sig in $(ls -t ~/you_in_the_loop/ar_signal_queue/sig_*.yaml 2>/dev/null | head -5); do
     ref=$(grep "ref_dispatch:" "$sig" 2>/dev/null | awk '{print $2}' | tr -d '"' | tr -d "'")
     if [ -n "$ref" ]; then
         # tasks/dispatches/dispatch_inbox: DEF-20260402-07 해결 후 삭제됨
-        find ~/tso_in_the_loop/dispatch_inbox \
-             ~/tso_in_the_loop/tasks/dispatches \
+        find ~/you_in_the_loop/dispatch_inbox \
+             ~/you_in_the_loop/tasks/dispatches \
              -name "*.yaml" 2>/dev/null | while read f; do
             # DEF-20260413-13: ref in file → ^id: 앵커 매칭 (parent_dispatch 오매칭 방지)
             if grep -qE "^id:[[:space:]]*${ref}[[:space:]]*$" "$f" 2>/dev/null; then
@@ -73,7 +73,7 @@ fi
 
 # pending dispatch 확인
 PENDING_DISP=$(grep -rl "status:.*dispatched\|status:.*in_progress" \
-    ~/tso_in_the_loop/dispatch_inbox/*.yaml 2>/dev/null | wc -l | tr -d ' ')  # DEF-20260409-16: 경로 수정
+    ~/you_in_the_loop/dispatch_inbox/*.yaml 2>/dev/null | wc -l | tr -d ' ')  # DEF-20260409-16: 경로 수정
 
 cat > "$STATE_FILE" << YAML
 auto_saved: true
@@ -99,12 +99,12 @@ export HOOK_WORKLOG="$WORKLOG"
 DYNAMIC_ACTIONS=$(python3 - << 'PYEOF'
 import glob, yaml, os, sys, json
 
-inbox = os.path.expanduser("~/tso_in_the_loop/dispatch_inbox")
+inbox = os.path.expanduser("~/you_in_the_loop/dispatch_inbox")
 window = os.environ.get("HOOK_WINDOW", "")
 worklog_path = os.environ.get("HOOK_WORKLOG", "")
 
 # Worker 이름 추론
-status_file = os.path.expanduser("~/tso_in_the_loop/worker_status.json")
+status_file = os.path.expanduser("~/you_in_the_loop/worker_status.json")
 worker_name = ""
 try:
     with open(status_file) as f:
@@ -208,7 +208,7 @@ python3 - << PYEOF
 import json, os, tempfile
 from datetime import datetime, timezone
 
-STATUS_FILE = os.path.expanduser("~/tso_in_the_loop/worker_status.json")
+STATUS_FILE = os.path.expanduser("~/you_in_the_loop/worker_status.json")
 window = "${WINDOW}"
 now_iso = "${TS_ISO}"
 
@@ -248,7 +248,7 @@ python3 - << 'PYEOF'
 import json, os, glob, tempfile
 from pathlib import Path
 
-STATUS_FILE = os.path.expanduser("~/tso_in_the_loop/worker_status.json")
+STATUS_FILE = os.path.expanduser("~/you_in_the_loop/worker_status.json")
 JSONL_DIR = Path(os.path.expanduser("~/.claude/projects/-Users-tso-tso-in-the-loop/"))
 window = os.environ.get("HOOK_WINDOW", "")
 
@@ -349,7 +349,7 @@ import json, os, yaml
 from datetime import datetime, timezone
 from pathlib import Path
 
-SOMATIC_V3 = os.path.expanduser("~/tso_in_the_loop/01_origin/self_state/core/somatic_v3.yaml")
+SOMATIC_V3 = os.path.expanduser("~/you_in_the_loop/01_origin/self_state/core/somatic_v3.yaml")
 worklog_path = os.environ.get("HOOK_WORKLOG", "")
 ts_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -423,7 +423,7 @@ active_role = "engineer"  # default
 session_label = f"session-{ts_iso[:10]}"  # e.g. "session-2026-04-13"
 window = os.environ.get("HOOK_WINDOW", "")
 try:
-    STATUS_FILE = os.path.expanduser("~/tso_in_the_loop/worker_status.json")
+    STATUS_FILE = os.path.expanduser("~/you_in_the_loop/worker_status.json")
     if os.path.isfile(STATUS_FILE):
         with open(STATUS_FILE) as f:
             ws = json.load(f)

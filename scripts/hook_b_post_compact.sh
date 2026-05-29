@@ -7,7 +7,7 @@
 #   .compact_resume_flag 파일 생성 → 다음 부팅에서 감지 시 Step 0-4 생략.
 #   부팅 완료 후 플래그 파일은 CLAUDE.md 규칙에 따라 삭제됨.
 
-REPO="$HOME/tso_in_the_loop"
+REPO="$HOME/you_in_the_loop"
 FLAG_FILE="$REPO/.compact_resume_flag"
 TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S')
 

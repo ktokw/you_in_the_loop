@@ -8,7 +8,7 @@ DEF-20260409-14: 최상위 try-except + 로깅 추가 (crash → silent allow �
 """
 import json, os, sys
 
-HOOK_LOG = os.path.expanduser("~/tso_in_the_loop/context_logs/hook_errors.log")
+HOOK_LOG = os.path.expanduser("~/you_in_the_loop/context_logs/hook_errors.log")
 
 try:
     tool_name = os.environ.get('CLAUDE_TOOL', 'Edit')
@@ -24,7 +24,7 @@ try:
 
     # shared_files.yaml 로드 (없으면 기본값 사용)
     sf_path = os.path.expanduser(
-        '~/tso_in_the_loop/tasks/infra/autonomous_improvement/shared_files.yaml'
+        '~/you_in_the_loop/tasks/infra/autonomous_improvement/shared_files.yaml'
     )
     patterns = ['peer_review', 'deficiency_log', 'collab_design']
 

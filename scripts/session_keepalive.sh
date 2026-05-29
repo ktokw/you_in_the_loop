@@ -10,7 +10,7 @@
 #   bash scripts/session_keepalive.sh --window tso:7  # 특정 window만 체크
 #
 # cron (heartbeat 5분):
-#   */5 * * * * bash ~/tso_in_the_loop/scripts/session_keepalive.sh >> ~/tso_in_the_loop/context_logs/session_keepalive.log 2>&1
+#   */5 * * * * bash ~/you_in_the_loop/scripts/session_keepalive.sh >> ~/you_in_the_loop/context_logs/session_keepalive.log 2>&1
 # ============================================================
 
 set -uo pipefail
@@ -38,7 +38,7 @@ fi
 trap 'rm -f "$LOCKFILE" "$PIDFILE"' EXIT
 echo $$ > "$PIDFILE"
 
-TSO_DIR="$HOME/tso_in_the_loop"
+TSO_DIR="$HOME/you_in_the_loop"
 STATUS_JSON="$TSO_DIR/worker_status.json"
 LOG_FILE="$TSO_DIR/context_logs/session_keepalive.log"
 COOLDOWN=300  # 5분 — 동일 Worker 재시작 쿨다운

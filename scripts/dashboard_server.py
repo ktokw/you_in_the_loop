@@ -20,7 +20,7 @@ from fastapi.responses import FileResponse, HTMLResponse
 from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
 
-ROOT = Path("~/tso_in_the_loop").expanduser()
+ROOT = Path("~/you_in_the_loop").expanduser()
 STATIC_DIR = ROOT / "static"
 
 app = FastAPI(title="TSO Dashboard", docs_url=None, redoc_url=None)

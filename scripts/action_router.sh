@@ -15,7 +15,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 
 set -uo pipefail
 
-TSO_DIR="$HOME/tso_in_the_loop"
+TSO_DIR="$HOME/you_in_the_loop"
 SIGNAL_DIR="$TSO_DIR/ar_signal_queue"
 DISPATCH_DIR="$TSO_DIR/dispatch_inbox"
 STATUS_JSON="$TSO_DIR/worker_status.json"
@@ -207,7 +207,7 @@ for d in dispatch_dirs:
                 worker = tm.group(1).strip().strip('\"\'') if tm else 'unknown'
 
                 # velocity yaml 갱신
-                vel_path = os.path.expanduser('~/tso_in_the_loop/tasks/metrics/worker_velocity.yaml')
+                vel_path = os.path.expanduser('~/you_in_the_loop/tasks/metrics/worker_velocity.yaml')
                 os.makedirs(os.path.dirname(vel_path), exist_ok=True)
                 import yaml
                 try:

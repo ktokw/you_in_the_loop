@@ -11,7 +11,7 @@ fi
 WINDOW_SAFE="${WINDOW//[:/]/_}"
 TS=$(date +%Y%m%d_%H%M%S)
 TS_ISO=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-STATE_DIR=~/tso_in_the_loop/context_logs
+STATE_DIR=~/you_in_the_loop/context_logs
 
 mkdir -p "$STATE_DIR"
 
@@ -28,9 +28,9 @@ if [ "$LATEST_AGE" -lt 300 ]; then
 fi
 
 # machine-observable 상태 캡처
-CHANGES=$(cd ~/tso_in_the_loop && git diff --stat HEAD 2>/dev/null | tail -5)
+CHANGES=$(cd ~/you_in_the_loop && git diff --stat HEAD 2>/dev/null | tail -5)
 PENDING_DISP=$(grep -rl "status:.*dispatched\|status:.*in_progress" \
-    ~/tso_in_the_loop/dispatch_inbox/*.yaml 2>/dev/null | wc -l | tr -d ' ')  # DEF-20260409-16: 경로 수정
+    ~/you_in_the_loop/dispatch_inbox/*.yaml 2>/dev/null | wc -l | tr -d ' ')  # DEF-20260409-16: 경로 수정
 
 # DEF-20260410-17: worklog 파일명 통일 — CLAUDE_WORKER_NAME 우선, 없으면 tmux 창 이름, 폴백 WINDOW_SAFE
 WORKLOG_KEY=""
@@ -125,9 +125,9 @@ next_session:
 YAML
 
 # compact_log도 기록 (기존 기능 유지)
-mkdir -p ~/tso_in_the_loop/ar_signal_queue
+mkdir -p ~/you_in_the_loop/ar_signal_queue
 # DEF-20260413-04: compact_log.txt 로테이션 — 500줄 초과 시 최근 200줄만 유지
-COMPACT_LOG=~/tso_in_the_loop/ar_signal_queue/compact_log.txt
+COMPACT_LOG=~/you_in_the_loop/ar_signal_queue/compact_log.txt
 if [ -f "$COMPACT_LOG" ]; then
   _clog_lines=$(wc -l < "$COMPACT_LOG")
   if [ "$_clog_lines" -gt 500 ]; then

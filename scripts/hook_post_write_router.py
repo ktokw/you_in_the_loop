@@ -21,11 +21,11 @@ import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-HOOK_LOG = os.path.expanduser("~/tso_in_the_loop/context_logs/hook_errors.log")
-OWNERS_PATH = os.path.expanduser("~/tso_in_the_loop/scripts/OWNERS.yaml")
+HOOK_LOG = os.path.expanduser("~/you_in_the_loop/context_logs/hook_errors.log")
+OWNERS_PATH = os.path.expanduser("~/you_in_the_loop/scripts/OWNERS.yaml")
 DISPATCH_DIRS = [
-    os.path.expanduser("~/tso_in_the_loop/dispatch_inbox"),
-    os.path.expanduser("~/tso_in_the_loop/tasks/dispatches"),
+    os.path.expanduser("~/you_in_the_loop/dispatch_inbox"),
+    os.path.expanduser("~/you_in_the_loop/tasks/dispatches"),
     # tasks/dispatches/dispatch_inbox: DEF-20260402-07 해결 후 삭제됨. 경로 제거.
 ]
 INDEXER_EXTENSIONS = {".md", ".yaml", ".yml", ".txt"}
@@ -136,7 +136,7 @@ def _update_latest_state_status(sig_path: str, ref_dispatch: str):
     worker = m.group(1).strip("\"'")
 
     # worker_status.json에서 window 확인
-    status_file = os.path.expanduser("~/tso_in_the_loop/worker_status.json")
+    status_file = os.path.expanduser("~/you_in_the_loop/worker_status.json")
     try:
         with open(status_file) as f:
             ws = json.load(f)
@@ -154,7 +154,7 @@ def _update_latest_state_status(sig_path: str, ref_dispatch: str):
         return
 
     # window명으로 최신 state 파일 찾기
-    state_dir = os.path.expanduser("~/tso_in_the_loop/context_logs")
+    state_dir = os.path.expanduser("~/you_in_the_loop/context_logs")
     window_safe = window.replace(":", "_").replace("/", "_")
     candidates = sorted(
         glob.glob(f"{state_dir}/state_{window_safe}_*.yaml"),
@@ -262,7 +262,7 @@ def memory_indexer(fp: str):
     if ext not in INDEXER_EXTENSIONS:
         return
 
-    indexer = os.path.expanduser("~/tso_in_the_loop/scripts/memory_indexer.py")
+    indexer = os.path.expanduser("~/you_in_the_loop/scripts/memory_indexer.py")
     if not os.path.exists(indexer):
         return
 
@@ -283,7 +283,7 @@ def memory_indexer(fp: str):
 
 # ── Route 4: session_id 기록 ─────────────────────────────────────
 
-TSO_DIR = os.path.expanduser("~/tso_in_the_loop")
+TSO_DIR = os.path.expanduser("~/you_in_the_loop")
 WORKER_STATUS_PATH = os.path.join(TSO_DIR, "worker_status.json")
 
 
@@ -329,7 +329,7 @@ def session_id_update():
 
 # ── Route 5: standing_task last_run 갱신 ──────────────────────────
 
-STANDING_DIR = os.path.expanduser("~/tso_in_the_loop/tasks/standing_tasks")
+STANDING_DIR = os.path.expanduser("~/you_in_the_loop/tasks/standing_tasks")
 
 def standing_task_update(fp: str):
     """ar_signal_queue/fyi_* 작성 시 ref_standing_task → last_run 갱신."""

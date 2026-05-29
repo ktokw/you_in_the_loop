@@ -77,7 +77,7 @@ if __name__ == "__main__":
     except Exception as e:
         # DEF-20260409-14: crash → fail-closed + 로그
         from datetime import datetime
-        HOOK_LOG = os.path.expanduser("~/tso_in_the_loop/context_logs/hook_errors.log")
+        HOOK_LOG = os.path.expanduser("~/you_in_the_loop/context_logs/hook_errors.log")
         try:
             with open(HOOK_LOG, "a") as lf:
                 lf.write(f"{datetime.now().isoformat()} [hook_f] CRASH: {e}\n")

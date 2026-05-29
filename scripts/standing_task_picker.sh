@@ -7,7 +7,7 @@
 
 set -uo pipefail
 
-TSO_DIR="$HOME/tso_in_the_loop"
+TSO_DIR="$HOME/you_in_the_loop"
 ROLE="${1:-}"
 
 if [ -z "$ROLE" ]; then
@@ -26,7 +26,7 @@ python3 << PYEOF
 import re, os, glob, json
 from datetime import datetime, timezone
 
-TSO_DIR = os.path.expanduser("~/tso_in_the_loop")
+TSO_DIR = os.path.expanduser("~/you_in_the_loop")
 STANDING_FILE = "$STANDING_FILE"
 ROLE = "$ROLE"
 
