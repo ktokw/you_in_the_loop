@@ -269,7 +269,7 @@ routing_table:
     fallback_condition: "worker-sentinel 미가동 시"
     note: "~/stock_sentinel/ 관련 모든 작업은 worker-sentinel 전담."
 
-  - domain: "tso_in_the_loop 인프라"
+  - domain: "you_in_the_loop 인프라"
     keywords: ["dispatch_router", "watch_signals", "auto_enter", "permission_gate",
                "org_snapshot", "scripts/", "crontab", "tmux 구조", "CLAUDE.md"]
     primary: "worker-engineer"
@@ -322,23 +322,23 @@ routing_rules:
 dispatch_paths:
 
   canonical:
-    path: "~/tso_in_the_loop/dispatch_inbox/"
+    path: "~/you_in_the_loop/dispatch_inbox/"
     used_by: "Secretary, AR Manager 발송"
     naming: "disp_{YYYYMMDD_HHMMSS}_{target-role}.yaml"
 
   worker_to_worker:
-    path: "~/tso_in_the_loop/tasks/dispatches/"
+    path: "~/you_in_the_loop/tasks/dispatches/"
     used_by: "Worker → Worker 직접 발송 (Eli→Finn 등)"
     naming: "DISP-{ID}.yaml"
     note: "dispatch_router.sh가 두 경로 모두 폴링함."
 
   deprecated:
-    path: "~/tso_in_the_loop/tasks/dispatches/dispatch_inbox/"
+    path: "~/you_in_the_loop/tasks/dispatches/dispatch_inbox/"
     status: "deprecated — 신규 dispatch 금지. 기존 파일만 유지."
 
   boot_check_order:
-    - "~/tso_in_the_loop/dispatch_inbox/"
-    - "~/tso_in_the_loop/tasks/dispatches/"
+    - "~/you_in_the_loop/dispatch_inbox/"
+    - "~/you_in_the_loop/tasks/dispatches/"
 
   # v1.7 추가 — DEF-20260402-03-felix 해결
   priority_rule: |
