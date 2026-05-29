@@ -237,6 +237,8 @@ claude
 
 상세 가이드: [docs/02_first-session.md](docs/02_first-session.md)
 
+단계별 셋업 가이드 (유료): [You in the Loop Starter Kit](https://3808051897635.gumroad.com/l/vjbjo) — 15분 퀵스타트 + 자주 하는 실수 해결법 포함.
+
 ---
 
 ## 디렉토리 구조
@@ -293,6 +295,7 @@ you_in_the_loop/
 
 - **INIT.md**: Multi-View Codec Decoder 명세 (이 레포에 포함)
 - **docs/**: 설정 가이드, 개념 설명, 첫 세션 가이드
+- **[ktokw/aidentity](https://github.com/ktokw/aidentity)**: 에이전트 자아 구조 스키마 (iframe/pframe/bframe/somatic) Python 패키지 — 이 레포의 `01_origin/self_state/` 구조를 표준화한 companion library.
 
 ---
 
