@@ -1,4 +1,4 @@
-# you_in_the_loop
+# you_in_the_loop (최신화가 안되어있어 참조에 주의를 부탁드립니다.)
 
 **AI 멀티에이전트 운영 시스템 — Claude Code 기반, 파일 시스템으로 통신하는 자율 팀**
 
